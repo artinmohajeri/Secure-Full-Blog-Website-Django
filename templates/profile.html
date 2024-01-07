@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+profile
+{% endblock title %}
+
+{% block content %}
+<div class="tm-content-container">
+    <figure class="mb-0 profile-pic-container">
+        <div class="center-pic">
+            <img src="{{user.pic.url}}" width="200" height="200" alt="Image" class="img-fluid profile-pic" />
+        </div>
+    </figure>
+    <h5 class='text-center'>0 followers</h5>
+    <hr>
+    <div class="tm-content">
+        <h2 class="tm-page-title">{{user.username}}</h2>
+        {% if user.bio %}
+        <p class="bio-p">
+            {{user.bio}}
+        </p>
+        {% endif %}
+
+        {% if request.user == user %}
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="profile-input" id="file-lable">change profile picture</label>
+            {{form.pic}}
+            <button type="submit" name="addpic" class="btn btn-success mb-2" id="changepic">change</button>
+        </form>
+        {% endif %}
+
+        {% if request.user == user %}
+        <button id="addbio" type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#bioModal">
+            add bio
+        </button>
+        <div class="modal fade" id="bioModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <label for="blog-text">Bio:</label>
+                            {{bioform.bio}}
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="submit" name='addbio' class="btn btn-success">Add
+                                bio</button>
+                            {% if user.bio %}
+                            <a href="{% url "delete_bio" %}" type="submit" name='delbio' class="btn btn-danger">delete
+                                bio</a>
+                            {% endif %}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+
+        {% if request.user == user %}
+        <br>
+        <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#makeModal">
+            post blog
+        </button>
+        <div class="modal fade" id="makeModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <div class="form-group mb-0">
+                                <h5>Blog Image:</h5>
+                                <label for="blog-img" id="blog-img-lbl">choose a picture</label>
+                                {{blogform.pic}}
+                            </div>
+                            <div class="form-group mb-0 mx-5">
+                                <label for="blog-title">Blog title:</label>
+                                {{blogform.title}}
+                            </div>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <label for="blog-text">Blog Content:</label>
+                            {{blogform.body}}
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success" name="addblog">Post</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% endif %}
+
+        
+        <a href="#" class="btn btn-secondary mb-2">
+            see user's posts
+        </a>
+        {% if request.user == user %}
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
+            delete account
+        </button>
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h6 class="modal-title">Are you sure to delete accout?</h6>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <a class="btn btn-danger" href="{% url "delete_account" %}">delete</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- The Modal -->
+        </div>
+        {% endif %}
+        {% if user != request.user %}
+        <br>
+        <a href="" class="btn btn-success" id="follow-btn">Follow</a>
+        {% endif %}
+    </div>
+
+    <script>
+        const textarea = document.querySelector("#bio-txt")
+        const bio = document.querySelector(".bio-p")
+        const addBio = document.querySelector("#addbio")
+
+        if (addBio) {
+            if (bio) {
+                addBio.innerHTML = "update bio"
+                addBio.addEventListener("click", function () {
+                    textarea.value = bio.innerHTML.trim()
+                })
+            } else {
+                addBio.innerHTML = "add bio"
+            }
+        }
+    </script>
+    {% endblock content %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+users
+{% endblock title %}
+
+{% block content %}
+<div class="tm-content-container users-box">
+
+    {% if users %}
+    {% for user in users %}
+    <div class="card user-card" style="width:200px;">
+        <img class="card-img-top" width='200px' height="200px" src="{{user.pic.url}}" alt="Card image">
+        <div class="card-body">
+            <h4 class="card-title">{{user.fname}} {{user.lname}}</h4>
+            {% if user.bio %}
+                <p class="card-text">{{ user.bio|slice:":20" }}</p>
+            {% endif %}
+            <a href="{% url 'profile_page' username=user.username %}" class="btn btn-primary">See Profile</a>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+<div class="pagination-container mt-5 users-pagination">
+    <ul class="pagination mx-auto">
+        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
+</div>
+{% endblock content %}
