@@ -50,10 +50,6 @@
                     <li>
                         <a href="{% url 'users_page' %}"><span class="tm-nav-deco"></span>Users</a>
                     </li>
-                    <li>
-
-                        <a href="{% url 'contact_page' %}"><span class="tm-nav-deco"></span>Contact</a>
-                    </li>
                     {% if user.is_authenticated %}
                     <li>
                     <a href="{% url 'logout' %}"><span class="tm-nav-deco"></span>logout</a>

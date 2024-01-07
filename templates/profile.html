@@ -98,13 +98,9 @@ profile
                     </div>
                 </form>
             </div>
-        </div>
+        </div><br>
         {% endif %}
 
-        
-        <a href="#" class="btn btn-secondary mb-2">
-            see user's posts
-        </a>
         {% if request.user == user %}
         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
             delete account
@@ -115,7 +111,7 @@ profile
                 <div class="modal-content">
                     <!-- Modal Header -->
                     <div class="modal-header">
-                        <h6 class="modal-title">Are you sure to delete accout?</h6>
+                        <h6 class="modal-title">Are you sure to delete your accout?</h6>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <!-- Modal footer -->

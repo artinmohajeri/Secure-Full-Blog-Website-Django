@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from .forms import SignUpForm, SignInForm,ProfilePicForm, BioForm, BlogForm
 from .models import CustomUser, Blog
+from django.core.paginator import Paginator
 
 class HomePage(TemplateView):
     template_name = "home.html"
@@ -68,7 +69,10 @@ def blog_page(request,username, id):
 
 def blogs_page(request):
     blogs = Blog.objects.all()
-    return render(request, 'blogs.html', {'blogs':blogs})
+    paginator = Paginator(blogs, 10)
+    page = request.GET.get('page')
+    blog_list = paginator.get_page(page)
+    return render(request, 'blogs.html', {'blogs':blogs,'blog_list':blog_list})
 
 def followings_blogs_page(request):
     blogs = Blog.objects.all()
@@ -133,11 +137,13 @@ def follow(request, username):
     user = get_object_or_404(CustomUser, username=username)
     user.followers.add(request.user)
     request.user.followings.add(user)
+    return redirect(request.META['HTTP_REFERER'])
 @login_required
 def unfollow(request, username):
     user = get_object_or_404(CustomUser, username=username)
     user.followers.remove(request.user)
     request.user.followings.remove(user)
+    return redirect(request.META['HTTP_REFERER'])
 
 @login_required
 def like(request, id):
@@ -153,7 +159,7 @@ def dislike(request, id):
 
 def users(request):
     all_users = CustomUser.objects.all()
-    return render(request, 'users.html', {"users":all_users})
-
-class ContactPage(TemplateView):
-    template_name = "contact.html"
+    paginator = Paginator(all_users, 12)
+    page = request.GET.get('page')
+    users_list = paginator.get_page(page)
+    return render(request, 'users.html', {"users_list":users_list})

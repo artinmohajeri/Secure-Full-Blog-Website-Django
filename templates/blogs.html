@@ -31,8 +31,6 @@ blogs
         </div>
         {% endfor %}
         {% endfor %}
-
-
         {% else %}
         {% if user.is_authenticated %}
         <div style="width:100%">
@@ -40,7 +38,7 @@ blogs
             follow.</a>
         </div>
         {% endif %}
-        {% for blog in blogs %}
+        {% for blog in blog_list %}
         <div class="col-sm-6 tm-gallery-item">
           <figure class="effect-bubba">
             <img id="img-blog" src="{{blog.pic.url}}" alt="Gallery item" class="img-fluid" />
@@ -60,12 +58,37 @@ blogs
 </div>
 </div>
 <div class="pagination-container">
+  <!-- Assuming you have a blog_list object that contains the paginated blog entries -->
   <ul class="pagination mx-auto">
-    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    {% if blog_list.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+      <li class="page-item"><a class="page-link" href="?page={{ blog_list.previous_page_number }}">Previous</a></li>
+    {% else %}
+      <li class="page-item disabled"><span class="page-link">First</span></li>
+      <li class="page-item disabled"><span class="page-link">Previous</span></li>
+    {% endif %}
+  
+    {% for i in blog_list.paginator.page_range %}
+      {% if blog_list.number == i %}
+        <li class="page-item active"><span class="page-link">{{ i }}</span></li>
+      {% elif i == blog_list.paginator.page_range.0 or i == blog_list.paginator.page_range.1 or i == blog_list.paginator.page_range.2 or i == blog_list.paginator.page_range.3 or i == blog_list.paginator.page_range.4 or i == blog_list.paginator.page_range.5 or i == blog_list.paginator.page_range.6 or i == blog_list.paginator.page_range.7 or i == blog_list.paginator.page_range.8 or i == blog_list.paginator.page_range.9 or i == blog_list.paginator.page_range.10 %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% elif i == blog_list.paginator.page_range.11 %}
+        <li class="page-item"><span class="page-link">...</span></li>
+      {% elif i == blog_list.paginator.page_range.90 or i == blog_list.paginator.page_range.91 or i == blog_list.paginator.page_range.92 or i == blog_list.paginator.page_range.93 or i == blog_list.paginator.page_range.94 or i == blog_list.paginator.page_range.95 or i == blog_list.paginator.page_range.96 or i == blog_list.paginator.page_range.97 or i == blog_list.paginator.page_range.98 or i == blog_list.paginator.page_range.99 or i == blog_list.paginator.page_range.100 %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+  
+    {% if blog_list.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ blog_list.next_page_number }}">Next</a></li>
+      <li class="page-item"><a class="page-link" href="?page={{ blog_list.paginator.num_pages }}">Last</a></li>
+    {% else %}
+      <li class="page-item disabled"><span class="page-link">Next</span></li>
+      <li class="page-item disabled"><span class="page-link">Last</span></li>
+    {% endif %}
   </ul>
+  
+
 </div>
 {% endblock content %}

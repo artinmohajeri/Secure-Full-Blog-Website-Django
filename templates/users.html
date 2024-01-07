@@ -7,8 +7,7 @@ users
 {% block content %}
 <div class="tm-content-container users-box">
 
-    {% if users %}
-    {% for user in users %}
+    {% for user in users_list %}
     <div class="card user-card" style="width:200px;">
         <img class="card-img-top" width='200px' height="200px" src="{{user.pic.url}}" alt="Card image">
         <div class="card-body">
@@ -20,15 +19,36 @@ users
         </div>
     </div>
     {% endfor %}
-    {% endif %}
 </div>
 <div class="pagination-container mt-5 users-pagination">
     <ul class="pagination mx-auto">
-        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-    </ul>
+        {% if users_list.has_previous %}
+          <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+          <li class="page-item"><a class="page-link" href="?page={{ users_list.previous_page_number }}">Previous</a></li>
+        {% else %}
+          <li class="page-item disabled"><span class="page-link">First</span></li>
+          <li class="page-item disabled"><span class="page-link">Previous</span></li>
+        {% endif %}
+      
+        {% for i in users_list.paginator.page_range %}
+          {% if users_list.number == i %}
+            <li class="page-item active"><span class="page-link">{{ i }}</span></li>
+          {% elif i == users_list.paginator.page_range.0 or i == users_list.paginator.page_range.1 or i == users_list.paginator.page_range.2 or i == users_list.paginator.page_range.3 or i == users_list.paginator.page_range.4 or i == users_list.paginator.page_range.5 or i == users_list.paginator.page_range.6 or i == users_list.paginator.page_range.7 or i == users_list.paginator.page_range.8 or i == users_list.paginator.page_range.9 or i == users_list.paginator.page_range.10 %}
+            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+          {% elif i == users_list.paginator.page_range.11 %}
+            <li class="page-item"><span class="page-link">...</span></li>
+          {% elif i == users_list.paginator.page_range.90 or i == users_list.paginator.page_range.91 or i == users_list.paginator.page_range.92 or i == users_list.paginator.page_range.93 or i == users_list.paginator.page_range.94 or i == users_list.paginator.page_range.95 or i == users_list.paginator.page_range.96 or i == users_list.paginator.page_range.97 or i == users_list.paginator.page_range.98 or i == users_list.paginator.page_range.99 or i == users_list.paginator.page_range.100 %}
+            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+      
+        {% if users_list.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{ users_list.next_page_number }}">Next</a></li>
+          <li class="page-item"><a class="page-link" href="?page={{ users_list.paginator.num_pages }}">Last</a></li>
+        {% else %}
+          <li class="page-item disabled"><span class="page-link">Next</span></li>
+          <li class="page-item disabled"><span class="page-link">Last</span></li>
+        {% endif %}
+      </ul>
 </div>
 {% endblock content %}
