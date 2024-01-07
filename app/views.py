@@ -61,12 +61,22 @@ def signin_page(request):
         form = SignInForm()
     return render(request, 'signin.html', {"form": form, "user":request.user})
 
-class BlogPage(TemplateView):
-    template_name = "blog.html"
 
-class BlogsPage(TemplateView):
-    template_name = "blogs.html"
+def blog_page(request,username, id):
+    blog = Blog.objects.get(id=id)
+    return render(request, 'blog.html', {'blog':blog})
 
+def blogs_page(request):
+    blogs = Blog.objects.all()
+    return render(request, 'blogs.html', {'blogs':blogs})
+
+def followings_blogs_page(request):
+    blogs = Blog.objects.all()
+    followed_users = request.user.followings.all()
+    show_only_my_followings_blogs = True
+    return render(request, 'blogs.html', {'blogs':blogs, 'followed_users':followed_users, 'show_only_my_followings_blogs':show_only_my_followings_blogs})
+
+@login_required
 def profile_page(request, username):
     bioform = BioForm()
     blogform = BlogForm()
@@ -78,6 +88,7 @@ def profile_page(request, username):
                 pic = form.cleaned_data["pic"]
                 request.user.pic = pic
                 request.user.save()
+                messages.success(request, "Your profile picture changed successfuly")
                 return redirect('/profile/'+username)
         elif "addbio" in request.POST:
             bioform = BioForm(request.POST)
@@ -85,13 +96,16 @@ def profile_page(request, username):
                 bio = bioform.cleaned_data["bio"]
                 request.user.bio = bio
                 request.user.save()
+                messages.success(request, "Your bio changed successfuly")
                 return redirect('/profile/'+username)
         elif "addblog" in request.POST:
-            blogform = BlogForm(request.POST)
+            blogform = BlogForm(request.POST, request.FILES)
             if blogform.is_valid():
                 blog = blogform.save(commit=False)
                 blog.author = request.user
+                print(blog.pic)
                 blog.save()
+                messages.success(request, "Your blog was posted successfuly")
                 return redirect('/profile/'+username)
     else:
         form = ProfilePicForm()
@@ -100,21 +114,42 @@ def profile_page(request, username):
 def delete_bio(request):
     request.user.bio = ""
     request.user.save()
+    messages.success(request, "Your bio was deleted successfuly")
     return redirect('/profile/'+request.user.username)
 
 def delete_account(request):
     request.user.delete()
+    messages.success(request, "Your account was deleted successfuly")
     return redirect('/')
 
-
+@login_required
 def logout_func(request):
     logout(request)
     messages.success(request, "Logged out successfuly!")
     return redirect(to=reverse('signin_page'))
 
+@login_required
+def follow(request, username):
+    user = get_object_or_404(CustomUser, username=username)
+    user.followers.add(request.user)
+    request.user.followings.add(user)
+@login_required
+def unfollow(request, username):
+    user = get_object_or_404(CustomUser, username=username)
+    user.followers.remove(request.user)
+    request.user.followings.remove(user)
 
-class UsersPage(TemplateView):
-    template_name = "users.html"
+@login_required
+def like(request, id):
+    blog = get_object_or_404(Blog, id=id)
+    blog.likes.add(request.user)
+    return redirect(request.META['HTTP_REFERER'])
+
+@login_required
+def dislike(request, id):
+    blog = get_object_or_404(Blog, id=id)
+    blog.likes.remove(request.user)
+    return redirect(request.META['HTTP_REFERER'])
 
 def users(request):
     all_users = CustomUser.objects.all()

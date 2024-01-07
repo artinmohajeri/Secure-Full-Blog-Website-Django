@@ -39,9 +39,6 @@
                         <a href="{% url 'signin_page' %}"><span class="tm-nav-deco"></span>signin</a>
                     </li>
                     <li>
-                        <a href="{% url 'blog_page' %}"><span class="tm-nav-deco"></span>Blog</a>
-                    </li>
-                    <li>
                         <a href="{% url 'blogs_page' %}"><span class="tm-nav-deco"></span>Blogs</a>
                     </li>
                     {% if user.is_authenticated %}
@@ -49,10 +46,12 @@
                         <a href="{% url 'profile_page' request.user.username %}"><span class="tm-nav-deco"></span>Profile</a>
                     </li>
                     {% endif %}
+                    
                     <li>
                         <a href="{% url 'users_page' %}"><span class="tm-nav-deco"></span>Users</a>
                     </li>
                     <li>
+
                         <a href="{% url 'contact_page' %}"><span class="tm-nav-deco"></span>Contact</a>
                     </li>
                     {% if user.is_authenticated %}

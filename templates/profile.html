@@ -11,7 +11,7 @@ profile
             <img src="{{user.pic.url}}" width="200" height="200" alt="Image" class="img-fluid profile-pic" />
         </div>
     </figure>
-    <h5 class='text-center'>0 followers</h5>
+    <h5 class='text-center'>{{user.followers.count}} followers</h5>
     <hr>
     <div class="tm-content">
         <h2 class="tm-page-title">{{user.username}}</h2>
@@ -19,6 +19,7 @@ profile
         <p class="bio-p">
             {{user.bio}}
         </p>
+        <hr>
         {% endif %}
 
         {% if request.user == user %}
@@ -129,7 +130,11 @@ profile
         {% endif %}
         {% if user != request.user %}
         <br>
-        <a href="" class="btn btn-success" id="follow-btn">Follow</a>
+            {% if request.user in user.followers.all %}
+            <a href="{% url "unfollow" username=user.username%}" class="btn btn-danger" id="follow-btn">UnFollow</a>
+            {% else %}
+            <a href="{% url "follow" username=user.username%}" class="btn btn-success" id="follow-btn">Follow</a>
+            {% endif %}
         {% endif %}
     </div>
 

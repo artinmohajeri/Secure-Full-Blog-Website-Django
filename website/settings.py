@@ -132,3 +132,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))]
 
 AUTH_USER_MODEL = 'app.CustomUser'
+
+LOGIN_URL = '/signin/'

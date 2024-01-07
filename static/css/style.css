@@ -422,6 +422,17 @@ figcaption {
 .bio-p{
 	word-wrap: break-word;
 }
+#blog-title-h2, #blog-body-p{
+	word-wrap: break-word;
+}
+#img-blog{
+	width: 240px;
+	height: 160px;
+}
+#blog-page-img{
+	width: 600px;
+	height: 400px;
+}
 #like-btn{
 	font-size: 30px;
 	width: 60px;

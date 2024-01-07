@@ -11,6 +11,15 @@ class CustomUser(AbstractUser):
     lname = models.CharField(max_length=30, null=False, blank=False)
     bio = models.TextField(blank=True, null=True)
     pic = models.ImageField(upload_to='profile_pictures/', blank=True, null=True, default="profile_pictures/default-profile.jpg")
+    followers = models.ManyToManyField("self", blank=True, symmetrical=False, related_name='user_followers')
+    followings = models.ManyToManyField("self", blank=True, symmetrical=False, related_name='user_followings')
+
+    def total_followers(self):
+        return self.followers.count()
+    
+    def total_followings(self):
+        return self.followings.count()
+
     objects = CustomUserManager()
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['fname', 'lname']
@@ -24,10 +33,14 @@ class CustomUser(AbstractUser):
         super().save(*args, **kwargs)
 
 class Blog(models.Model):
-    pic = models.ImageField(upload_to='blog_pictures', blank=True, null=True, default="blog_pictures/img-1.jpg")
+    pic = models.ImageField(upload_to='blog_pictures/', blank=True, null=True, default="blog_pictures/img-1.jpg")
     title = models.CharField(max_length=50, null=False, blank=False, default="")
     body = models.TextField(null=False, blank=False, default="")
+    likes = models.ManyToManyField(CustomUser, blank=True, symmetrical=False, related_name='blog_likes')
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='blogs')
+
+    def total_likes(self):
+        return self.likes.count()
 
     def __str__(self):
         return str(f"{self.title}   |   {self.body[:50]}")

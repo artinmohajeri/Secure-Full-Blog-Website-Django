@@ -8,75 +8,53 @@ blogs
 <div class="tm-content-container">
   <div class="tm-content tm-content-2">
     <p>
-      This gallery contains a beautiful hover effect and pop-up larger
-      images. Please mention TemplateMo site to your friends.
+      blogs
     </p>
-
     <div class="container-fluid">
       <div class="row tm-gallery" id="tmGallery">
+
+        {% if show_only_my_followings_blogs %}
+        <div style="width: 100%;">
+          <a href="{% url 'blogs_page' %}" class="btn btn-primary ml-3">view all users</a>
+        </div>
+        {% for user in followed_users %}
+        {% for blog in user.blogs.all %}
         <div class="col-sm-6 tm-gallery-item">
           <figure class="effect-bubba">
-            <img src="{% static 'img/gallery/gallery-img-01.jpg' %}" alt="Gallery item" class="img-fluid" />
+            <img id="img-blog" src="{{blog.pic.url}}" alt="Gallery item" class="img-fluid"/>
             <figcaption>
-              <h2>Fresh <span>Bubba</span></h2>
-              <p>Bubba likes to appear out of thin air.</p>
-              <a href="">View more</a>
+              <h2 id="blog-title-h2">{{blog.title|slice:":12"}}</h2>
+              <p id="blog-body-p">{{blog.body|slice:":30" }}</p>
+              <a href="{% url "blog_page" id=blog.id username=user.username%}"></a>
             </figcaption>
           </figure>
         </div>
+        {% endfor %}
+        {% endfor %}
+
+
+        {% else %}
+        {% if user.is_authenticated %}
+        <div style="width:100%">
+          <a href="{% url 'followings_blogs_page' %}" class="btn btn-primary ml-3">View only the blogs of users you
+            follow.</a>
+        </div>
+        {% endif %}
+        {% for blog in blogs %}
         <div class="col-sm-6 tm-gallery-item">
           <figure class="effect-bubba">
-            <img src="{% static 'img/gallery/gallery-img-02.jpg' %}" alt="Gallery item" class="img-fluid" />
+            <img id="img-blog" src="{{blog.pic.url}}" alt="Gallery item" class="img-fluid" />
             <figcaption>
-              <h2>Fresh <span>Bubba</span></h2>
-              <p>Bubba likes to appear out of thin air.</p>
-              <a href="">View more</a>
+              <h2 id="blog-title-h2">{{blog.title|slice:":12"}}</h2>
+              <p id="blog-body-p">{{blog.body|slice:":30" }}</p>
+              <a href="{% url "blog_page" id=blog.id username=blog.author.username%}"></a>
             </figcaption>
           </figure>
         </div>
-        <div class="col-sm-6 tm-gallery-item">
-          <figure class="effect-bubba">
-            <img src="{% static 'img/gallery/gallery-img-03.jpg' %}" alt="Gallery item" class="img-fluid" />
-            <figcaption>
-              <h2>Fresh <span>Bubba</span></h2>
-              <p>Bubba likes to appear out of thin air.</p>
-              <a href="">View more</a>
-            </figcaption>
-          </figure>
-        </div>
-        <div class="col-sm-6 tm-gallery-item">
-          <figure class="effect-bubba">
-            <img src="{% static 'img/gallery/gallery-img-04.jpg' %}" alt="Gallery item" class="img-fluid" />
-            <figcaption>
-              <h2>Fresh <span>Bubba</span></h2>
-              <p>Bubba likes to appear out of thin air.</p>
-              <a href="img/gallery/gallery-img-04.jpg">View more</a>
-            </figcaption>
-          </figure>
-        </div>
-        <div class="col-sm-6 tm-gallery-item">
-          <figure class="effect-bubba">
-            <img src="{% static 'img/gallery/gallery-img-05.jpg' %}" alt="Gallery item" class="img-fluid" />
-            <figcaption>
-              <h2>Fresh <span>Bubba</span></h2>
-              <p>Bubba likes to appear out of thin air.</p>
-              <a href="img/gallery/gallery-img-05.jpg">View more</a>
-            </figcaption>
-          </figure>
-        </div>
-        <div class="col-sm-6 tm-gallery-item">
-          <figure class="effect-bubba">
-            <img src="{% static 'img/gallery/gallery-img-06.jpg' %}" alt="Gallery item" class="img-fluid" />
-            <figcaption>
-              <h2>Fresh <span>Bubba</span></h2>
-              <p>Bubba likes to appear out of thin air.</p>
-              <a href="img/gallery/gallery-img-06.jpg">View more</a>
-            </figcaption>
-          </figure>
-        </div>
+        {% endfor %}
+        {% endif %}
 
       </div>
-      
     </div>
   </div>
 </div>

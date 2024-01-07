@@ -1,25 +1,29 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}
-blog
+{{blog.title}}
 {% endblock title %}
 
 {% block content %}
 <div class="tm-content-container">
   <figure class="mb-0">
-    <img src="{% static 'img/img-1.jpg' %}" alt="Image" class="img-fluid tm-img" />
+    <img src="{{blog.pic.url}}" alt="Image" id="blog-page-img" class="img-fluid tm-img" />
   </figure>
   <div class="tm-content">
-    <h2 class="tm-page-title">Verticard Simple CSS Template</h2>
+    <h6>{{blog.author.username}} posted:</h6>
+    <h2 class="tm-page-title">{{blog.title}}</h2>
     <p class="mb-4">
-      Curabitur ac est dapibus, ultricies diam non, vestibulum odio. Sed
-      ac nunc lacinia, maximus nisi non, efficitur lacus, Donec efficitur
-      at dui non molestie.
+      {{blog.body}}
     </p>
     <hr>
+    
     <div>
-      <a href="" id="like-btn" class="btn btn-success mb-3">👍</a>
-      <span id="number-of-likes">0 likes</span>
+      {% if request.user in blog.likes.all %}
+      <a href="{% url "dislike" id=blog.id %}" id="like-btn" class="btn btn-danger mb-3">👎</a>
+      {% else %}
+      <a href="{% url "like" id=blog.id %}" id="like-btn" class="btn btn-success mb-3">👍</a>
+      {% endif %}
+      <span id="number-of-likes">{{blog.likes.count}} likes</span>
     </div>
   </div>
 </div>
