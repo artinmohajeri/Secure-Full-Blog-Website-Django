@@ -6,7 +6,7 @@
 ![redLine](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/95bf83a6-7095-4bac-83b6-d2dc5760abc4)
 - Although it's not a flawless project, this web application was designed to resemble real-world websites. It's a mid-level project using Django, and there's definitely room for expansion.
 - both sides (frondend & backend) is written by myself
-- ![greenLine](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/fdd65a53-fd83-40aa-91e7-06337c214da5)
+![greenLine](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/fdd65a53-fd83-40aa-91e7-06337c214da5)
 ## write these commands in your terminal to run this web application 👇👇👇
 ### `python -m venv .venv`
 ### `.venv\Scripts\activate.bat`
