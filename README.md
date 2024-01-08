@@ -4,6 +4,7 @@
 ### In this website you can (signup, signin, logout and delete your account). you can choose profilePic and bio and update it.
 ### You can follow users, see their profile, like/dislike their blogs and ...
 ### This webapp is not perfect as it is not built for being perfect. it is just a mid-level project of using django. so this project indeed can be extended more
+![redLine](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/95bf83a6-7095-4bac-83b6-d2dc5760abc4)
 - Although it's not perfect, this web application was designed to resemble real-world websites. It's a mid-level project using Django, and there's definitely room for expansion.
 
 ![Screenshot (174)](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/c0eeeb35-80f0-4c5a-8aa9-d8875a8bcf9a)
