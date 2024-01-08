@@ -5,6 +5,7 @@
 ### You can follow users, see their profile, like/dislike their blogs and ... see the pictures to see more fitures.
 ![redLine](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/95bf83a6-7095-4bac-83b6-d2dc5760abc4)
 - Although it's not a flawless project, this web application was designed to resemble real-world websites. It's a mid-level project using Django, and there's definitely room for expansion.
+- both sides (frondend & backend) is written by myself
 
 ![Screenshot (174)](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/c0eeeb35-80f0-4c5a-8aa9-d8875a8bcf9a)
 ![Screenshot (173)](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/7787b635-f36a-4263-9ed0-d6f1b1bf3461)
