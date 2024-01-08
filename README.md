@@ -7,11 +7,11 @@
 - Although it's not a flawless project, this web application was designed to resemble real-world websites. It's a mid-level project using Django, and there's definitely room for expansion.
 - both sides (frondend & backend) is written by myself
 - ![greenLine](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/fdd65a53-fd83-40aa-91e7-06337c214da5)
-# write these commands in your terminal to run this web application 👇👇👇
-`python -m venv .venv`
-`.venv\Scripts\activate.bat`
-`pip install -r requirements.txt`
-`python manage.py runserver`
+## write these commands in your terminal to run this web application 👇👇👇
+# `python -m venv .venv`
+# `.venv\Scripts\activate.bat`
+# `pip install -r requirements.txt`
+# `python manage.py runserver`
 
 ![Screenshot (170)](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/287135e7-64ca-4fdf-8f60-cd6432429e3e)
 ![Screenshot (171)](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/e2a3a39e-dbb6-4604-8930-a741e39aee28)
