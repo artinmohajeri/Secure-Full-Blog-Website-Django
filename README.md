@@ -7,12 +7,11 @@
 - Although it's not a flawless project, this web application was designed to resemble real-world websites. It's a mid-level project using Django, and there's definitely room for expansion.
 - both sides (frondend & backend) is written by myself
 
-![Screenshot (174)](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/c0eeeb35-80f0-4c5a-8aa9-d8875a8bcf9a)
-![Screenshot (173)](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/7787b635-f36a-4263-9ed0-d6f1b1bf3461)
-![Screenshot (175)](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/7eb4bc65-e43d-4f91-9e4c-17424165197b)
-![Screenshot (176)](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/60c6cfb8-223a-48f8-8056-5f628e0081d7)
-![Screenshot (178)](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/16adaa5f-dc1b-4c78-b6ac-5d40ea35f257)
-![Screenshot (177)](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/20832225-4680-4f6d-b515-370c123f39e8)
-![Screenshot (170)](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/9d7160dd-4b8d-42c4-8227-555b701d5427)
-![Screenshot (172)](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/be852fc7-90d1-4d75-8ca7-bc072aaa110d)
-![Screenshot (171)](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/b96634bd-f1fe-42c1-9a82-051c3ada3c79)
+![Screenshot (170)](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/287135e7-64ca-4fdf-8f60-cd6432429e3e)
+![Screenshot (171)](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/e2a3a39e-dbb6-4604-8930-a741e39aee28)
+![Screenshot (173)](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/08af44a8-d836-4ed9-a6ef-06c5e78fa7ab)
+![Screenshot (174)](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/4fbcea1b-72fa-4b78-ad16-17a2dfdd1ec9)
+![Screenshot (175)](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/56564ff0-186e-4c8a-8ac6-b59835784d6c)
+![Screenshot (176)](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/6bd44d95-182f-4eb5-a8cf-7855142c1a92)
+![Screenshot (177)](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/c373054b-f296-4c13-9bda-19aabe215bcd)
+![Screenshot (178)](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/79b336b3-c371-4f7a-aba3-f4e4d7ffd067)
