@@ -1,8 +1,9 @@
-# responsive full blog web application Django
+# Secure responsive full blog web application Django
 
 ### This is a full web project using (HTML5, CSS3, Bootstrap4, Js, python3, Django)
 ### In this website you can (signup, signin, logout and delete your account). you can choose profilePic and bio and update it.
 ### You can follow users, see their profile, like/dislike their blogs and ... see the pictures to see more fitures.
+##### it also has django-defender installed that prevents (Brute Force & login Attackes)
 ![redLine](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/95bf83a6-7095-4bac-83b6-d2dc5760abc4)
 - Although it's not a flawless project, this web application was designed to resemble real-world websites. It's a mid-level project using Django, and there's definitely room for expansion.
 - both sides (frondend & backend) is written by myself
