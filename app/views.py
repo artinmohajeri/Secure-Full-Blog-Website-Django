@@ -9,7 +9,7 @@ from .models import CustomUser, Blog
 from django.core.paginator import Paginator
 
 class HomePage(TemplateView):
-    template_name = "home.html"
+    template_name = "home.html" 
 
 def signup_page(request):
     if request.method == 'POST':
@@ -56,7 +56,6 @@ def signin_page(request):
                 messages.warning(request, "The user does not exist or the password is incorrect")
         else:
             messages.warning(request, "Invalid form data. Please check the input.")
-            print("*****************************")
             print(form.is_valid)
     else:
         form = SignInForm()
