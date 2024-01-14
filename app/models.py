@@ -27,10 +27,10 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return str(self.username)
 
-    # def save(self, *args, **kwargs):
-    #     if not self.id:  # If the user is being created (not updated)
-    #         self.password = make_password(self.password)
-    #     super().save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        if not self.id:  # If the user is being created (not updated)
+            self.password = make_password(self.password)
+        super().save(*args, **kwargs)
 
 class Blog(models.Model):
     pic = models.ImageField(upload_to='blog_pictures/', blank=True, null=True, default="blog_pictures/img-1.jpg")

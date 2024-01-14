@@ -1,9 +1,12 @@
 from django import forms
 from .models import CustomUser, Blog
 from django.contrib.auth.forms import AuthenticationForm
+# from captcha.fields import ReCaptchaField
+from django_recaptcha.fields import ReCaptchaField
 
 
 class SignUpForm(forms.ModelForm):
+    captcha = ReCaptchaField()
     def __init__(self, *args, **kwargs):
             super(SignUpForm, self).__init__(*args, **kwargs)
             self.fields['username'].widget.attrs.update({'class': 'form-control','_type':'text', 'id': 'uname', 'placeholder': 'Enter username', 'maxlength':'30', 'name':'username'})

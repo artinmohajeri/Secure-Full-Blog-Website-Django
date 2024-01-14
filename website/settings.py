@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app',
     'defender',
+    'axes',
+    'django_recaptcha',
 ]
 
 MIDDLEWARE = [
@@ -47,10 +49,10 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'defender.middleware.FailedLoginMiddleware',
+    'axes.middleware.AxesMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
 ]
 
 ROOT_URLCONF = 'website.urls'
@@ -84,6 +86,11 @@ DATABASES = {
     }
 }
 
+AUTHENTICATION_BACKENDS = [
+       'django.contrib.auth.backends.ModelBackend',
+       'axes.backends.AxesBackend',
+       'axes.backends.AxesStandaloneBackend',
+   ]
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -103,7 +110,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -115,16 +121,13 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -132,7 +135,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))]
 
-
 AUTH_USER_MODEL = 'app.CustomUser'
-
 LOGIN_URL = '/signin/'
+
+AXES_FAILURE_LIMIT = 5
+AXES_LOCK_OUT_AT_FAILURE = True
+AXES_COOLOFF_TIME = 1  # Lockout time in minutes
+AXES_LOCKOUT_TEMPLATE = 'lockout.html'
+
+
+RECAPTCHA_PUBLIC_KEY = '6LdQvU8pAAAAAEV0BFvZrcce7spuaYipbNMyAjVR'
+RECAPTCHA_PRIVATE_KEY = '6LdQvU8pAAAAACLwoEh3PHbfEiHpklOhqhOFUP_U'

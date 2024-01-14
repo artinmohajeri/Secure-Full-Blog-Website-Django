@@ -7,10 +7,12 @@ from django.views.generic import TemplateView
 from .forms import SignUpForm, SignInForm,ProfilePicForm, BioForm, BlogForm
 from .models import CustomUser, Blog
 from django.core.paginator import Paginator
+from axes.decorators import axes_dispatch
 
 class HomePage(TemplateView):
     template_name = "home.html" 
 
+@axes_dispatch
 def signup_page(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
@@ -22,7 +24,7 @@ def signup_page(request):
                 if password == confirm_password:  #check if the username already exists
                     user = form.save(commit=False)
                     user.save()
-                    user = authenticate(username=username, password=password)
+                    user = authenticate(request, username=username, password=password)
                     messages.success(request, "Your account was created successfully!")
                     login(request, user)
                     return redirect('/profile/'+username)
@@ -39,7 +41,7 @@ def signup_page(request):
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form, "user":request.user})
 
-
+@axes_dispatch
 def signin_page(request):
     if request.method == "POST":
         form = SignInForm(request.POST)
@@ -47,13 +49,14 @@ def signin_page(request):
             print(form.is_valid)
             username = form.cleaned_data["username"]
             password = form.cleaned_data["password"]
-            user = authenticate(username=username, password=password)
+            user = authenticate(request, username=username, password=password)
             if user:
                 login(request, user)
                 messages.success(request, "Logged in successfully!")
                 return redirect('/profile/'+username)
             else:
                 messages.warning(request, "The user does not exist or the password is incorrect")
+            return redirect('/signin')
         else:
             messages.warning(request, "Invalid form data. Please check the input.")
             print(form.is_valid)
