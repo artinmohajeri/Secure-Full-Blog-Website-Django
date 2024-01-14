@@ -3,7 +3,7 @@
 ### This is a full web project using (HTML5, CSS3, Bootstrap4, Js, python3, Django)
 ### In this website you can (signup, signin, logout and delete your account). you can choose profilePic and bio and update it.
 ### You can follow users, see their profile, like/dislike their blogs and ... see the pictures to see more fitures.
-#### 🔺🔺🔺 it also has django-defender installed that prevents (Brute Force & login Attackes)
+#### 🔺🔺🔺 it also has django-defender and django-axis installed that prevents (Brute Force & login Attackes). I have used django-recaptcha aswell to prevents bots to signup
 ![redLine](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/95bf83a6-7095-4bac-83b6-d2dc5760abc4)
 - Although it's not a flawless project, this web application was designed to resemble real-world websites. It's a mid-level project using Django, and there's definitely room for expansion.
 - both sides (frondend & backend) is written by myself
@@ -15,7 +15,7 @@
 ### `pip install -r requirements.txt`
 ### `python manage.py runserver`
 
-![Screenshot (170)](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/287135e7-64ca-4fdf-8f60-cd6432429e3e)
+![Screenshot (185)](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/26363f7e-f3a9-46ad-a14d-71803df2e944)
 ![Screenshot (171)](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/e2a3a39e-dbb6-4604-8930-a741e39aee28)
 ![Screenshot (173)](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/08af44a8-d836-4ed9-a6ef-06c5e78fa7ab)
 ![Screenshot (174)](https://github.com/artinmohajeri/Full-Blog-Website-Django/assets/95845593/4fbcea1b-72fa-4b78-ad16-17a2dfdd1ec9)
