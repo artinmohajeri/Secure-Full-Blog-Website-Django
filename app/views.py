@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
+from django.http import JsonResponse
+import json
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from .forms import SignUpForm, SignInForm,ProfilePicForm, BioForm, BlogForm
@@ -165,3 +167,7 @@ def users(request):
     page = request.GET.get('page')
     users_list = paginator.get_page(page)
     return render(request, 'users.html', {"users_list":users_list})
+
+def users_json(request):
+    data = list(CustomUser.objects.values())
+    return JsonResponse(data=data, safe=False)
